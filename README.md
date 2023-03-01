@@ -170,7 +170,7 @@ Make sure that userId in url param and in token is same
 }
 Note: Bcrypt Send form-data
 
-# FEATTURE II - Product
+## FEATTURE II - Product
 
  * Models
 Product Model
@@ -206,7 +206,7 @@ On error - Return a suitable error message with a valid HTTP status code. The re
    Price : greater than or less than a specific value. The keys are 'priceGreaterThan' and 'priceLessThan'.
  * NOTE: For price filter request could contain both or any one of the keys. For example the query in the request could look like { priceGreaterThan: 500,     priceLessThan: 2000 } or just { priceLessThan: 1000 } )
 
-# Sort
+*  Sort
 
 Sorted by product price in ascending or descending. The key value pair will look like {priceSort : 1} or {priceSort : -1} eg /products?size=XL&name=Nit%20grit
 Response format
@@ -222,7 +222,7 @@ PUT /products/:productId
  Updates a product by changing at least one or all fields
  Check if the productId exists (must have isDeleted false and is present in collection). If it doesn't, return an HTTP status 404 with a response body like this
  
-* Response format
+** Response format
 
  On success - Return HTTP status 200. Also return the updated product document. The response should be a JSON object like this
 On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
@@ -259,7 +259,7 @@ Make sure the user exist
 Make sure the product(s) are valid and not deleted.
 Get product(s) details in response body.
 
-* Response format
+** Response format
 On success - Return HTTP status 201. Also return the cart document. The response should be a JSON object like this
 On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
 # PUT /users/:userId/cart (Remove product / Reduce a product's quantity from the cart)
@@ -273,7 +273,7 @@ Make sure the userId in params and in JWT token match.
 Make sure the user exist
 Get product(s) details in response body.
 Check if the productId exists and is not deleted before updating the cart.
-* Response format
+**  Response format
 On success - Return HTTP status 200. Also return the updated cart document. The response should be a JSON object like this
 On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
 
@@ -333,7 +333,7 @@ Get order id in request body
 Make sure the order belongs to the user
 Make sure that only a cancellable order could be canceled. Else send an appropriate error message and response.
 
-* Response format
+** Response format
 
 On success - Return HTTP status 200. Also return the updated order document. The response should be a JSON object like this
 On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
@@ -344,7 +344,7 @@ Each request in the collection should be rightly named. Eg Create user, Create p
 Each member of each team should have their tests in running state
 Refer below sample A Postman collection and request sample
 
-# Response
+** Response
 Successful Response structure
 {
   status: true,
@@ -359,7 +359,7 @@ Error Response structure
   message: ""
 }
 Collections
-users
+* users
 {
   _id: ObjectId("88abc190ef0288abc190ef02"),
   fname: 'John',
@@ -383,7 +383,7 @@ users
   createdAt: "2021-09-17T04:25:07.803Z",
   updatedAt: "2021-09-17T04:25:07.803Z",
 }
-products
+* products
 {
   _id: ObjectId("88abc190ef0288abc190ef55"),
   title: 'Nit Grit',
@@ -401,7 +401,7 @@ products
   createdAt: "2021-09-17T04:25:07.803Z",
   updatedAt: "2021-09-17T04:25:07.803Z",
 }
-carts
+* carts
 {
   "_id": ObjectId("88abc190ef0288abc190ef88"),
   userId: ObjectId("88abc190ef0288abc190ef02"),
