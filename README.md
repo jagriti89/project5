@@ -13,7 +13,7 @@ In this project we are changing how we send token with a request. Instead of usi
 Create a group database groupXDatabase. You can clean the db you previously used and resue that.
 This time each group should have a single git branch. Coordinate amongst yourselves by ensuring every next person pulls the code last pushed by a team mate. You branch will be checked as part of the demo. Branch name should follow the naming convention project/productsManagementGroupX
 Follow the naming conventions exactly as instructed.
-      FEATURE I - User
+FEATURE I - User
    Models
 User Model
 { 
@@ -137,10 +137,10 @@ On error - Return a suitable error message with a valid HTTP status code. The re
 Allow an user to update their profile.
 A user can update all the fields
 Make sure that userId in url param and in token is same
-#Response format
-On success - Return HTTP status 200. Also return the updated user document. The response should be a JSON object like this
-On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
-{
+  #Response format
+   On success - Return HTTP status 200. Also return the updated user document. The response should be a JSON object like this
+       On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
+  {
     "status": true,
     "message": "User profile updated",
     "data": {
@@ -212,21 +212,24 @@ Sorted by product price in ascending or descending. The key value pair will look
 Response format
 On success - Return HTTP status 200. Also return the product documents. The response should be a JSON object like this
 On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
-#GET /products/:productId
+# GET /products/:productId
 
 Returns product details by product id
  #Response format
-On success - Return HTTP status 200. Also return the product documents. The response should be a JSON object like this
-On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
+ On success - Return HTTP status 200. Also return the product documents. The response should be a JSON object like this
+ On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
 PUT /products/:productId
-Updates a product by changing at least one or all fields
-Check if the productId exists (must have isDeleted false and is present in collection). If it doesn't, return an HTTP status 404 with a response body like this
+ Updates a product by changing at least one or all fields
+ Check if the productId exists (must have isDeleted false and is present in collection). If it doesn't, return an HTTP status 404 with a response body like this
+ 
 #Response format
-On success - Return HTTP status 200. Also return the updated product document. The response should be a JSON object like this
+
+ On success - Return HTTP status 200. Also return the updated product document. The response should be a JSON object like this
 On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
-DELETE /products/:productId
+#DELETE /products/:productId
+
 Deletes a product by product id if it's not already deleted
-Response format
+#Response format
 On success - Return HTTP status 200. The response should be a JSON object like this
 On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
 
@@ -323,13 +326,14 @@ Get cart details in the request body
 
 On success - Return HTTP status 200. Also return the order document. The response should be a JSON object like this
 On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
-PUT /users/:userId/orders
+#PUT /users/:userId/orders
 Updates an order status
 Make sure the userId in params and in JWT token match.
 Make sure the user exist
 Get order id in request body
 Make sure the order belongs to the user
 Make sure that only a cancellable order could be canceled. Else send an appropriate error message and response.
+
 #Response format
 
 On success - Return HTTP status 200. Also return the updated order document. The response should be a JSON object like this
