@@ -1,21 +1,21 @@
 # project5
- Project - Products Management
-   Key points
+ ## Project - Products Management
+ Key points
 In this project we will work feature wise. That means we pick one object like user, book, blog, etc at a time. We work through it's feature. The steps would be:
-We create it's model.
-We build it's APIs.
-We test these APIs.
-We deploy these APIs.
-We integrate these APIs with frontend.
-We will repeat steps from Step 1 to Step 5 for each feature in this project.
+ * We create it's model.
+ * We build it's APIs.
+ * We test these APIs.
+ *  We deploy these APIs.
+ * We integrate these APIs with frontend.
+* We will repeat steps from Step 1 to Step 5 for each feature in this project.
 This project is divided into 4 features namely User, Product, Cart and Order. You need to work on a single feature at a time. Once that is completed as per above mentioned steps. You will be instructed to move to next Feature.
 In this project we are changing how we send token with a request. Instead of using a custom header key like x-api-key, you need to use Authorization header and send the JWT token as Bearer token.
 Create a group database groupXDatabase. You can clean the db you previously used and resue that.
 This time each group should have a single git branch. Coordinate amongst yourselves by ensuring every next person pulls the code last pushed by a team mate. You branch will be checked as part of the demo. Branch name should follow the naming convention project/productsManagementGroupX
 Follow the naming conventions exactly as instructed.
-FEATURE I - User
-   Models
-User Model
+# FEATURE I - User
+ * Models
+ User Model
 { 
   fname: {string, mandatory},
   lname: {string, mandatory},
@@ -38,15 +38,15 @@ User Model
   createdAt: {timestamp},
   updatedAt: {timestamp}
 }
-#User APIs
+# User APIs
 
-#POST /register
+# POST /register
 
 Create a user document from request body. Request body must contain image.
 Upload image to S3 bucket and save it's public url in user document.
 Save password in encrypted format. (use bcrypt)
 
-#Response format
+* Response format
 
 On success - Return HTTP status 201. Also return the user document. The response should be a JSON object like this
 On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
@@ -78,13 +78,13 @@ On error - Return a suitable error message with a valid HTTP status code. The re
         "__v": 0
     }
 }
-#POST /login
+# POST /login
 
 Allow an user to login with their email and password.
 On a successful login attempt return the userId and a JWT token contatining the userId, exp, iat.
 NOTE: There is a slight change in response body. You should also return userId in addition to the JWT token.
 
-#Response format
+* Response format
 
 On success - Return HTTP status 200 and JWT token in response body. The response should be a JSON object like this
 On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
@@ -97,7 +97,7 @@ On error - Return a suitable error message with a valid HTTP status code. The re
     }
 }
 
-GET /user/:userId/profile (Authentication required)
+# GET /user/:userId/profile (Authentication required)
 
 Allow an user to fetch details of their profile.
 Make sure that userId in url param and in token is same
@@ -132,7 +132,7 @@ On error - Return a suitable error message with a valid HTTP status code. The re
         "__v": 0
     }
 }
-#PUT /user/:userId/profile (Authentication and Authorization required)
+# PUT /user/:userId/profile (Authentication and Authorization required)
 
 Allow an user to update their profile.
 A user can update all the fields
@@ -170,9 +170,9 @@ Make sure that userId in url param and in token is same
 }
 Note: Bcrypt Send form-data
 
-#FEATTURE II - Product
+# FEATTURE II - Product
 
-Models
+ * Models
 Product Model
 { 
   title: {string, mandatory, unique},
@@ -192,21 +192,21 @@ Product Model
 }
 Products API (No authentication required)
 
-#POST /products
-    Create a product document from request body.
+# POST /products
+ Create a product document from request body.
 Upload product image to S3 bucket and save image public url in document.
-Response format
+* Response format
 On success - Return HTTP status 201. Also return the product document. The response should be a JSON object like this
 On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
-#GET /products
+# GET /products
   Returns all products in the collection that aren't deleted.
-    Filters
-      Size (The key for this filter will be 'size')
+   Filters
+   Size (The key for this filter will be 'size')
    Product name (The key for this filter will be 'name'). You should return all the products with name containing the substring recieved in this filter
-    Price : greater than or less than a specific value. The keys are 'priceGreaterThan' and 'priceLessThan'.
-NOTE: For price filter request could contain both or any one of the keys. For example the query in the request could look like { priceGreaterThan: 500, priceLessThan: 2000 } or just { priceLessThan: 1000 } )
+   Price : greater than or less than a specific value. The keys are 'priceGreaterThan' and 'priceLessThan'.
+ * NOTE: For price filter request could contain both or any one of the keys. For example the query in the request could look like { priceGreaterThan: 500,     priceLessThan: 2000 } or just { priceLessThan: 1000 } )
 
-#Sort
+# Sort
 
 Sorted by product price in ascending or descending. The key value pair will look like {priceSort : 1} or {priceSort : -1} eg /products?size=XL&name=Nit%20grit
 Response format
@@ -222,20 +222,19 @@ PUT /products/:productId
  Updates a product by changing at least one or all fields
  Check if the productId exists (must have isDeleted false and is present in collection). If it doesn't, return an HTTP status 404 with a response body like this
  
-#Response format
+* Response format
 
  On success - Return HTTP status 200. Also return the updated product document. The response should be a JSON object like this
 On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
-#DELETE /products/:productId
+# DELETE /products/:productId
 
 Deletes a product by product id if it's not already deleted
-#Response format
-On success - Return HTTP status 200. The response should be a JSON object like this
-On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
+* Response format
+ On success - Return HTTP status 200. The response should be a JSON object like this
+ On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
 
-#FEATURE III - Cart
-
-Models
+## FEATURE III - Cart
+* Models
 Cart Model
 {
   userId: {ObjectId, refs to User, mandatory, unique},
@@ -249,7 +248,7 @@ Cart Model
   updatedAt: {timestamp},
 }
 Cart APIs (authentication required as authorization header - bearer token)
-POST /users/:userId/cart (Add to cart)
+# POST /users/:userId/cart (Add to cart)
 Create a cart for the user if it does not exist. Else add product(s) in cart.
 Get cart id in request body.
 Get productId in request body.
@@ -260,10 +259,10 @@ Make sure the user exist
 Make sure the product(s) are valid and not deleted.
 Get product(s) details in response body.
 
-#Response format
+* Response format
 On success - Return HTTP status 201. Also return the cart document. The response should be a JSON object like this
 On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
-PUT /users/:userId/cart (Remove product / Reduce a product's quantity from the cart)
+# PUT /users/:userId/cart (Remove product / Reduce a product's quantity from the cart)
 Updates a cart by either decrementing the quantity of a product by 1 or deleting a product from the cart.
 Get cart id in request body.
 Get productId in request body.
@@ -274,11 +273,11 @@ Make sure the userId in params and in JWT token match.
 Make sure the user exist
 Get product(s) details in response body.
 Check if the productId exists and is not deleted before updating the cart.
-Response format
+* Response format
 On success - Return HTTP status 200. Also return the updated cart document. The response should be a JSON object like this
 On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
 
-#GET /users/:userId/cart
+# GET /users/:userId/cart
 Returns cart summary of the user.
 Make sure that cart exist.
 Make sure the userId in params and in JWT token match.
@@ -287,7 +286,7 @@ Get product(s) details in response body.
 Response format
 On success - Return HTTP status 200. Return the cart document. The response should be a JSON object like this
 On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
-#DELETE /users/:userId/cart
+# DELETE /users/:userId/cart
 
 Deletes the cart for the user.
 Make sure that cart exist.
@@ -297,8 +296,8 @@ cart deleting means array of items is empty, totalItems is 0, totalPrice is 0.
 Response format
 On success - Return HTTP status 204. Return a suitable message. The response should be a JSON object like this
 On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
-#FEATURE IV - Order
-Models
+## FEATURE IV - Order
+* Models
 Order Model
 {
   userId: {ObjectId, refs to User, mandatory},
@@ -317,16 +316,16 @@ Order Model
   updatedAt: {timestamp},
 }
 Checkout/Order APIs (Authentication and authorization required)
-POST /users/:userId/orders
+# POST /users/:userId/orders
 Create an order for the user
 Make sure the userId in params and in JWT token match.
 Make sure the user exist
 Get cart details in the request body
-#Response format
+* Response format
 
 On success - Return HTTP status 200. Also return the order document. The response should be a JSON object like this
 On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
-#PUT /users/:userId/orders
+# PUT /users/:userId/orders
 Updates an order status
 Make sure the userId in params and in JWT token match.
 Make sure the user exist
@@ -334,7 +333,7 @@ Get order id in request body
 Make sure the order belongs to the user
 Make sure that only a cancellable order could be canceled. Else send an appropriate error message and response.
 
-#Response format
+* Response format
 
 On success - Return HTTP status 200. Also return the updated order document. The response should be a JSON object like this
 On error - Return a suitable error message with a valid HTTP status code. The response should be a JSON object like this
@@ -345,7 +344,7 @@ Each request in the collection should be rightly named. Eg Create user, Create p
 Each member of each team should have their tests in running state
 Refer below sample A Postman collection and request sample
 
-#Response
+# Response
 Successful Response structure
 {
   status: true,
